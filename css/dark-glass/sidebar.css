@@ -100,19 +100,23 @@ div.sidebar-inject-bottom {
 }
 
 div.sidebar-body {
-	margin:20px;
+    margin:20px;
     position:absolute;
     top:0px;
     left:0px;
-	color:#FFFFFF;
+    color:#FFFFFF;
 }
 
 ul.sidebar-menu {
-    font-size:16pt;
+    font-size:12pt;
     font-weight:bold;
-	list-style:none;
-	text-decoration:none;
+    list-style:none;
+    text-decoration:none;
     color:white;
+}
+
+ul.sidebar-menu li{
+    line-height:1.5em;
 }
 
 a,a:visited {

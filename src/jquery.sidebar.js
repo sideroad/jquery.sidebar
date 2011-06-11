@@ -16,7 +16,10 @@
                 bodyCss,
                 position,
                 isEnter,
-                isProcessing;
+                isProcessing,
+                container = $("<div><div/>"),
+                inject = $("<div><div/>"),
+                body = $("<div><div/>");
                 
             //default setting
             options = $.extend(true, {
@@ -77,13 +80,13 @@
             options.animate.container.leave[position] = "-" + margin;
             
             //container
-            var container = $("<div><div/>").attr("id", "jquerySideBar" + new Date().getTime()).addClass("sidebar-container-" + position).css(containerCss);
+            container.attr("id", "jquerySideBar" + new Date().getTime()).addClass("sidebar-container-" + position).css(containerCss);
             
             //inject
-            var inject = $("<div><div/>").addClass("sidebar-inject-" + position).css(injectCss);
+            inject.addClass("sidebar-inject-" + position).css(injectCss);
             
             //body
-            var body = $("<div><div/>").addClass("sidebar-body").css(bodyCss).hide();
+            body.addClass("sidebar-body").css(bodyCss).hide();
             
             //menu events
             $(this).addClass("sidebar-menu").find("li")

@@ -8,10 +8,31 @@
         <script type="text/javascript" src="lib/jquery-1.4.4.min.js"></script>
         <script type="text/javascript" src="lib/jquery-ui-1.8.10.custom.min.js"></script>
         <script type="text/javascript" src="src/jquery.sidebar.js"></script>
-
     </head>
     <body>
-        <ul id="demo_menu" >
+        <ul id="demo_menu1" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+        <ul id="demo_menu2" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+        <ul id="demo_menu3" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+        <ul id="demo_menu4" >
+            <li><a href="#" >jQuery</a></li>
             <li><a href="#" >Write</a></li>
             <li><a href="#" >Less</a></li>
             <li><a href="#" >Do</a></li>
@@ -20,9 +41,27 @@
 
         <b style="font-size:80px;position:absolute;top:42%;left:35%;" >jquery.sidebar</b>
         <script type="text/javascript">
-            $(document.body).ready(function(){
-                $("ul#demo_menu").sidebar();
-            });
+        $("ul#demo_menu1").sidebar();
+        $("ul#demo_menu2").sidebar({
+            position:"right",
+            events:{
+                item : {
+                    enter : function(){
+                        $(this).find("a").animate({color:"red"}, 250);
+                    },
+                    leave : function(){
+                        $(this).find("a").animate({color:"white"}, 250);
+                    }
+                }
+            }
+        });
+        $("ul#demo_menu3").sidebar({
+            position:"top",
+          open:"click"
+        });
+        $("ul#demo_menu4").sidebar({
+            position:"bottom"
+        });
         </script>
     </body>
 </html>
