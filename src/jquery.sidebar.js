@@ -1,5 +1,5 @@
-/*!
- * Side Bar v1.0.1
+/*
+ * jquery.sidebar v1.0.2
  * http://sideroad.secret.jp/
  *
  * Copyright (c) 2009 sideroad
@@ -7,7 +7,6 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * Date: 2009-09-01
  */
-//Side Bar Plugin
 (function($) {
     $.fn.sidebar = function(options){
         return this.each(function(){

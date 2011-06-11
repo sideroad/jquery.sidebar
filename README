@@ -1,15 +1,9 @@
-/*
- * jquery.template v1.0.1
+/*!
+ * jquery.sidebar v1.0.2
  * http://sideroad.secret.jp/
  *
- * Template engine plugin
- * 
- * Copyright (c) 2011 sideroad
+ * Copyright (c) 2009 sideroad
  *
- * Dual licensed under the MIT or GPL licenses.
- * Date: 2011-03-03
- * 
- * @author sideroad
- * @requires jQuery
- * 
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Date: 2009-09-01
  */
