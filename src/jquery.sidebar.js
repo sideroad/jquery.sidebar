@@ -17,6 +17,9 @@
                 position,
                 isEnter,
                 isProcessing,
+                isItemEnter,
+                enter,
+                leave,
                 container = $("<div><div/>"),
                 inject = $("<div><div/>"),
                 body = $("<div><div/>");
@@ -30,10 +33,10 @@
                 events: {
                     item : {
                         enter : function(){
-                            $(this).animate({marginLeft:"5px"}, 250);
+                            $(this).animate({marginLeft:"5px"},250);
                         },
                         leave : function(){
-                            $(this).animate({marginLeft:"0px"}, 250);
+                            $(this).animate({marginLeft:"0px"},250);
                         }
                     }
                 },
@@ -94,12 +97,14 @@
                 .bind("mouseleave.sidebar",options.events.item.leave);
             
             //container events
+            enter = options.animate.container.enter;
+            leave = options.animate.container.leave;
             container.bind(options.open,function(){
                 if (isEnter) return;
                 if (isProcessing) return;
                 isEnter = true;
                 isProcessing = true;
-                container.animate(options.animate.container.enter, {
+                container.animate(enter, {
                     duration: 200,
                     complete: function(){
                         inject.fadeOut(200, function(){
@@ -113,7 +118,7 @@
                 if(!isEnter) return;
                 if(isProcessing) return;
                 isProcessing = true;
-                container.animate(options.animate.container.leave, {
+                container.animate(leave, {
                     duration: 200,
                     complete: function(){
                         body.hide("clip", 200, function(){
