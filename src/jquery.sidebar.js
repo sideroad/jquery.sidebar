@@ -15,9 +15,8 @@
                 containerCss,
                 bodyCss,
                 position,
-                isEnter,
-                isProcessing,
-                isItemEnter,
+                isEnter = false,
+                isProcessing = false,
                 enter,
                 leave,
                 container = $("<div><div/>"),
@@ -144,5 +143,5 @@
                 }
             });
         });
-    }
+    };
 })(jQuery);
