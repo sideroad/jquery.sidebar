@@ -7,10 +7,16 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * Date: 2009-09-01
  */
-(function($) {
+(function( $, _window ) {
     $.fn.sidebar = function(options){
         return this.each(function(){
-            var margin,
+            var elem = $(this),
+                margin,
+                width,
+                height,
+                duration,
+                injectWidth,
+                injectHeight,
                 injectCss,
                 containerCss,
                 bodyCss,
@@ -19,6 +25,8 @@
                 isProcessing = false,
                 enter,
                 leave,
+                opened,
+                closed,
                 container = $("<div><div/>"),
                 inject = $("<div><div/>"),
                 body = $("<div><div/>");
@@ -26,16 +34,21 @@
             //default setting
             options = $.extend(true, {
                 position : "left",
-                width : 100,
-                height : 200,
-                injectWidth : 50,
-                events: {
+                callback: {
                     item : {
                         enter : function(){
                             $(this).animate({marginLeft:"5px"},250);
                         },
                         leave : function(){
                             $(this).animate({marginLeft:"0px"},250);
+                        }
+                    },
+                    sidebar : {
+                        open : function(){
+                            
+                        },
+                        close : function(){
+                            
                         }
                     }
                 },
@@ -45,35 +58,55 @@
                         leave : {}
                     }
                 },
+                duration : 200,
                 open : "mouseenter.sidebar",
                 close : "mouseleave.sidebar"
             }, options);
             
+            opened = options.callback.sidebar.open;
+            closed = options.callback.sidebar.close;
             position = options.position;
+            duration = options.duration;
+            
+            container.attr("id", "jquerySideBar" + new Date().getTime()).addClass("sidebar-container-" + position);
+            inject.addClass("sidebar-inject-" + position);
+            body.addClass("sidebar-body");
+            
+            //append to body
+            body.append(this);
+            container.append(body);
+            container.append(inject);
+            $(document.body).append(container);
+            
+            width = container.width();
+            height = container.height();
+            injectWidth = inject.width();
+            injectHeight = inject.height();
+            
             containerCss = {
-                height: options.height,
-                width: options.width
+                height: height,
+                width: width
             };
             bodyCss = {
-                height: options.height,
-                width: options.width
+                height: height,
+                width: width
             };
             
             if(position == "left" || position == "right") {
-                margin = options.width - options.injectWidth;
+                margin = width - injectWidth;
                 injectCss = {
-                    height : options.height,
-                    width : options.injectWidth
+                    height : height,
+                    width : injectWidth
                 };
-                containerCss.top = ($(window).height()/2) - (options.height/2) + "px";
+                containerCss.top = options.top || ($(_window).height()/2) - (height/2) + "px";
                 
             } else {
-                margin = options.height - options.injectWidth;
+                margin = height - injectHeight;
                 injectCss = {
-                    height : options.injectWidth,
-                    width : options.width
+                    height : injectHeight,
+                    width : width
                 };
-                containerCss.left = ($(window).width()/2) - (options.width/2) + "px";
+                containerCss.left = options.left || ($(_window).width()/2) - (width/2) + "px";
             }
             
             containerCss[position] = "-" + margin + "px";
@@ -82,18 +115,18 @@
             options.animate.container.leave[position] = "-" + margin;
             
             //container
-            container.attr("id", "jquerySideBar" + new Date().getTime()).addClass("sidebar-container-" + position).css(containerCss);
+            container.css(containerCss);
             
             //inject
-            inject.addClass("sidebar-inject-" + position).css(injectCss);
+            inject.css(injectCss);
             
             //body
-            body.addClass("sidebar-body").css(bodyCss).hide();
+            body.css(bodyCss).hide();
             
-            //menu events
+            //menu callback
             $(this).addClass("sidebar-menu").find("li")
-                .bind("mouseenter.sidebar",options.events.item.enter)
-                .bind("mouseleave.sidebar",options.events.item.leave);
+                .bind("mouseenter.sidebar",options.callback.item.enter)
+                .bind("mouseleave.sidebar",options.callback.item.leave);
             
             //container events
             enter = options.animate.container.enter;
@@ -104,11 +137,12 @@
                 isEnter = true;
                 isProcessing = true;
                 container.animate(enter, {
-                    duration: 200,
+                    duration: duration,
                     complete: function(){
-                        inject.fadeOut(200, function(){
-                            body.show("clip", 200,function(){
+                        inject.fadeOut(duration, function(){
+                            body.show("clip", duration,function(){
                                 isProcessing = false;
+                                if(opened) opened();
                             });
                         });
                     }
@@ -118,30 +152,26 @@
                 if(isProcessing) return;
                 isProcessing = true;
                 container.animate(leave, {
-                    duration: 200,
+                    duration: duration,
                     complete: function(){
-                        body.hide("clip", 200, function(){
-                            inject.fadeIn(200, function(){
+                        body.hide("clip", duration, function(){
+                            inject.fadeIn(duration, function(){
                                 isEnter = false;
                                 isProcessing = false;
+                                if(closed) closed();
                             });
                         });
                     }
                 });
             });
             
-            //append to body
-            body.append(this);
-            container.append(body);
-            container.append(inject);
-            $(document.body).append(container);
-            $(window).resize(function(){
+            $(_window).resize(function(){
                 if(position == "left" || position == "right") {
-                    container.css({top:($(this).height()/2) - (options.height/2) + "px"});
+                    container.css({top:($(this).height()/2) - (height/2) + "px"});
                 } else {
-                    container.css({left:($(this).width()/2) - (options.width/2) + "px"});
+                    container.css({left:($(this).width()/2) - (width/2) + "px"});
                 }
             });
         });
     };
-})(jQuery);
+})(jQuery, this);

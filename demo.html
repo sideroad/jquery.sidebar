@@ -44,7 +44,7 @@
         $("ul#demo_menu1").sidebar();
         $("ul#demo_menu2").sidebar({
             position:"right",
-            events:{
+            callback:{
                 item : {
                     enter : function(){
                         $(this).find("a").animate({color:"red"}, 250);

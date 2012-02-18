@@ -4,6 +4,8 @@
 }
 
 div.sidebar-container-left {
+	width : 100px;
+	height : 200px;
     position:fixed;
     top:50%;
     left:0px;
@@ -21,6 +23,8 @@ div.sidebar-container-left {
 }
 
 div.sidebar-container-right {
+    width : 100px;
+    height : 200px;
     position:fixed;
     top:50%;
     right:0px;
@@ -38,6 +42,8 @@ div.sidebar-container-right {
 }
 
 div.sidebar-container-top {
+    width : 100px;
+    height : 200px;
     position:fixed;
     top:0px;
     left:50%;
@@ -55,6 +61,8 @@ div.sidebar-container-top {
 }
 
 div.sidebar-container-bottom {
+    width : 100px;
+    height : 200px;
     position:fixed;
     bottom:0px;
     left:50%;
@@ -76,6 +84,7 @@ div.sidebar-inject-left {
     background:url("inject-left.png") center no-repeat;
     top:0px;
     right:0px;
+    width : 50px;
 }
 
 div.sidebar-inject-right {
@@ -83,6 +92,7 @@ div.sidebar-inject-right {
     background:url("inject-right.png") center no-repeat;
     top:0px;
     left:0px;
+    width : 50px;
 }
 
 div.sidebar-inject-top {
@@ -90,6 +100,7 @@ div.sidebar-inject-top {
     background:url("inject-top.png") center no-repeat;
     bottom:0px;
     left:0px;
+    height : 50px;
 }
 
 div.sidebar-inject-bottom {
@@ -97,6 +108,7 @@ div.sidebar-inject-bottom {
     background:url("inject-bottom.png") center no-repeat;
     top:0px;
     right:0px;
+    height : 50px;
 }
 
 div.sidebar-body {
@@ -108,7 +120,7 @@ div.sidebar-body {
 }
 
 ul.sidebar-menu {
-    font-size:16pt;
+    font-size:12pt;
     font-weight:bold;
     list-style:none;
     text-decoration:none;
