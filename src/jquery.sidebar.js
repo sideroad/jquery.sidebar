@@ -9,27 +9,88 @@
  */
 (function( $, _window ) {
     $.fn.sidebar = function(options){
+        
+        
         return this.each(function(){
+            
             var elem = $(this),
+                data = elem.data("sidebar")||{},
                 margin,
                 width,
                 height,
-                duration,
+                duration = data.duration,
                 injectWidth,
                 injectHeight,
                 injectCss,
                 containerCss,
                 bodyCss,
                 position,
-                isEnter = false,
-                isProcessing = false,
                 enter,
                 leave,
                 opened,
                 closed,
                 container = $("<div><div/>"),
                 inject = $("<div><div/>"),
-                body = $("<div><div/>");
+                body = $("<div><div/>"),
+                open = function(){
+                    var data = elem.data("sidebar") || {},
+                        opened = data.callback.sidebar.open,
+                        container = data.container,
+                        inject = data.inject,
+                        body = data.body;
+                    
+                    if (data.isEnter) return;
+                    if (data.isProcessing) return;
+                    data.isEnter = true;
+                    data.isProcessing = true;
+                    container.animate(data.animate.container.enter, {
+                        duration: duration,
+                        complete: function(){
+                            inject.fadeOut(duration, function(){
+                                body.show("clip", duration,function(){
+                                    data.isProcessing = false;
+                                    if(opened) opened();
+                                });
+                            });
+                        }
+                    });
+                },
+                close = function(){
+                    var data = elem.data("sidebar") || {},
+                        closed = data.callback.sidebar.close,
+                        container = data.container,
+                        inject = data.inject,
+                        body = data.body;
+                       
+                    if(!data.isEnter) return;
+                    if(data.isProcessing) return;
+                    data.isProcessing = true;
+                    container.animate(data.animate.container.leave, {
+                        duration: duration,
+                        complete: function(){
+                            body.hide("clip", duration, function(){
+                                inject.fadeIn(duration, function(){
+                                    data.isEnter = false;
+                                    data.isProcessing = false;
+                                    if(closed) closed();
+                                });
+                            });
+                        }
+                    });
+                };
+            
+            
+            if(typeof options == "string"){
+                switch(options){
+                    case "open" :
+                        open();
+                        break;
+                    case "close" : 
+                        close();
+                        break;
+                }
+                return;
+            }
                 
             //default setting
             options = $.extend(true, {
@@ -63,8 +124,6 @@
                 close : "mouseleave.sidebar"
             }, options);
             
-            opened = options.callback.sidebar.open;
-            closed = options.callback.sidebar.close;
             position = options.position;
             duration = options.duration;
             
@@ -129,41 +188,14 @@
                 .bind("mouseleave.sidebar",options.callback.item.leave);
             
             //container events
-            enter = options.animate.container.enter;
-            leave = options.animate.container.leave;
-            container.bind(options.open,function(){
-                if (isEnter) return;
-                if (isProcessing) return;
-                isEnter = true;
-                isProcessing = true;
-                container.animate(enter, {
-                    duration: duration,
-                    complete: function(){
-                        inject.fadeOut(duration, function(){
-                            body.show("clip", duration,function(){
-                                isProcessing = false;
-                                if(opened) opened();
-                            });
-                        });
-                    }
-                });
-            }).bind(options.close,function(){
-                if(!isEnter) return;
-                if(isProcessing) return;
-                isProcessing = true;
-                container.animate(leave, {
-                    duration: duration,
-                    complete: function(){
-                        body.hide("clip", duration, function(){
-                            inject.fadeIn(duration, function(){
-                                isEnter = false;
-                                isProcessing = false;
-                                if(closed) closed();
-                            });
-                        });
-                    }
-                });
-            });
+            if(options.open) container.bind(options.open,open);
+            if(options.close) container.bind(options.close,close);
+            
+            //store data
+            options.container = container;
+            options.inject = inject;
+            options.body = body;
+            elem.data("sidebar", options);
             
             $(_window).resize(function(){
                 if(position == "left" || position == "right") {
@@ -172,6 +204,7 @@
                     container.css({left:($(this).width()/2) - (width/2) + "px"});
                 }
             });
+            
         });
     };
 })(jQuery, this);

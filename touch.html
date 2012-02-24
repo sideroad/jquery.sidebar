@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>jquery.sidebar.js</title>
+        <link rel="stylesheet" type="text/css" href="css/dark-glass/sidebar.css" />
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.8.13/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="src/jquery.sidebar.js"></script>
+    </head>
+    <body>
+        <ul id="demo_menu1" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+        <ul id="demo_menu2" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+        <ul id="demo_menu3" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+        <ul id="demo_menu4" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+
+        <b style="font-size:80px;position:absolute;top:42%;left:35%;" >jquery.sidebar</b>
+        <script type="text/javascript">
+        var elem = $("ul#demo_menu1");
+        elem.sidebar({
+//            open : "touchstart",
+            open : "mouseenter",
+            close : false
+        });
+        
+        $(document.body).bind("touchstart", function(e){
+            var target = $(e.target);
+            
+            if(target != elem && target.parents(elem) ){
+                elem.sidebar("close");
+            }
+            
+        })
+        
+        </script>
+    </body>
+</html>

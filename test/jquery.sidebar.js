@@ -195,5 +195,46 @@
         
         container.click();
     });
+    
+    
+    asyncTest( "call open/close method manually", function() {
+        var elem = $("#sidebar"),
+            inject,
+            container,
+            body,
+            pos = "left";
+            
+        elem.sidebar({
+            position : pos,
+            open : "click",
+            callback : {
+                sidebar : {
+                    open : function(){
+                        ok( !inject.is(":visible") );
+                        ok( body.is(":visible") );
+                        elem.sidebar("close");
+                    },
+                    close : function(){
+                        ok( inject.is(":visible") );
+                        ok( !body.is(":visible") );
+                        destroy();
+                        start();
+                    }
+                }
+            }
+        });
+        
+        inject = $(".sidebar-inject-"+pos);
+        container = $(".sidebar-container-"+pos);
+        body = $(".sidebar-body");
+        
+        equal( inject.length, 1 );
+        equal( container.length, 1 );
+        equal( body.length, 1 );
+        equal( container.css( pos ), "-50px" );
+        
+        elem.sidebar("open");
+        
+    });
 
 })( jQuery );
