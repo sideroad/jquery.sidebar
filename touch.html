@@ -41,16 +41,17 @@
 
         <b style="font-size:80px;position:absolute;top:42%;left:35%;" >jquery.sidebar</b>
         <script type="text/javascript">
-        var data = $("ul#demo_menu1").sidebar({
+        var elem = $("ul#demo_menu1").sidebar({
             open : "touchstart",
             close : false
-        }).data("sidebar");
-        
-        
+        }),
+        data = elem.data("sidebar");
+    
+    
         $(document.body).bind("touchstart", function(e){
             var target = $(e.target),
                 id = data.container.attr("id");
-
+    
             if(!target.is("#"+id) && !target.parents("#"+id).length ){
                 elem.sidebar("close");
             }
