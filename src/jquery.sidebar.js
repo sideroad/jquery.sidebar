@@ -29,9 +29,12 @@
                 leave,
                 opened,
                 closed,
+                isInnerElement,
                 container = $("<div><div/>"),
                 inject = $("<div><div/>"),
                 body = $("<div><div/>"),
+                root,
+                parent,
                 open = function(){
                     var data = elem.data("sidebar") || {},
                         opened = data.callback.sidebar.open,
@@ -94,6 +97,7 @@
                 
             //default setting
             options = $.extend(true, {
+                root : $(document.body),
                 position : "left",
                 callback: {
                     item : {
@@ -124,18 +128,22 @@
                 close : "mouseleave.sidebar"
             }, options);
             
+            root = options.root;
+            isInnerElement = !root.is(document.body);
+            parent = ( isInnerElement ) ? root.addClass("sidebar-root") : $(_window);
+            
             position = options.position;
             duration = options.duration;
             
-            container.attr("id", "jquerySideBar" + new Date().getTime()).addClass("sidebar-container-" + position);
-            inject.addClass("sidebar-inject-" + position);
+            container.attr("id", "jquerySideBar" + new Date().getTime()).addClass("sidebar-container").addClass(position);
+            inject.addClass("sidebar-inject").addClass(position);
             body.addClass("sidebar-body");
             
             //append to body
             body.append(this);
             container.append(body);
             container.append(inject);
-            $(document.body).append(container);
+            root.append(container);
             
             width = container.width();
             height = container.height();
@@ -157,7 +165,7 @@
                     height : height,
                     width : injectWidth
                 };
-                containerCss.top = options.top || ($(_window).height()/2) - (height/2) + "px";
+                containerCss.top = options.top || (parent.height()/2) - (height/2) + "px";
                 
             } else {
                 margin = height - injectHeight;
@@ -165,7 +173,7 @@
                     height : injectHeight,
                     width : width
                 };
-                containerCss.left = options.left || ($(_window).width()/2) - (width/2) + "px";
+                containerCss.left = options.left || (parent.width()/2) - (width/2) + "px";
             }
             
             containerCss[position] = "-" + margin + "px";
@@ -197,7 +205,7 @@
             options.body = body;
             elem.data("sidebar", options);
             
-            $(_window).resize(function(){
+            parent.resize(function(){
                 if(position == "left" || position == "right") {
                     container.css({top:($(this).height()/2) - (height/2) + "px"});
                 } else {

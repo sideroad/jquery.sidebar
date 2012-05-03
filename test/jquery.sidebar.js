@@ -3,7 +3,7 @@
     module( "jquery.sidebar" );
     
     var destroy = function destroy(){
-        $(".sidebar-container-left,.sidebar-container-top,.sidebar-container-right,.sidebar-container-bottom").remove();
+        $(".sidebar-container.left,.sidebar-container.top,.sidebar-container.right,.sidebar-container.bottom").remove();
     };
     
     asyncTest( "default/left", function() {
@@ -32,8 +32,8 @@
             }
         });
         
-        inject = $(".sidebar-inject-"+pos);
-        container = $(".sidebar-container-"+pos);
+        inject = $(".sidebar-inject."+pos);
+        container = $(".sidebar-container."+pos);
         body = $(".sidebar-body");
         
         equal( inject.length, 1 );
@@ -69,8 +69,8 @@
             }
         });
         
-        inject = $(".sidebar-inject-"+pos);
-        container = $(".sidebar-container-"+pos);
+        inject = $(".sidebar-inject."+pos);
+        container = $(".sidebar-container."+pos);
         body = $(".sidebar-body");
         
         equal( inject.length, 1 );
@@ -106,8 +106,8 @@
             }
         });
         
-        inject = $(".sidebar-inject-"+pos);
-        container = $(".sidebar-container-"+pos);
+        inject = $(".sidebar-inject."+pos);
+        container = $(".sidebar-container."+pos);
         body = $(".sidebar-body");
         
         equal( inject.length, 1 );
@@ -144,8 +144,8 @@
             }
         });
         
-        inject = $(".sidebar-inject-"+pos);
-        container = $(".sidebar-container-"+pos);
+        inject = $(".sidebar-inject."+pos);
+        container = $(".sidebar-container."+pos);
         body = $(".sidebar-body");
         
         equal( inject.length, 1 );
@@ -184,8 +184,8 @@
             }
         });
         
-        inject = $(".sidebar-inject-"+pos);
-        container = $(".sidebar-container-"+pos);
+        inject = $(".sidebar-inject."+pos);
+        container = $(".sidebar-container."+pos);
         body = $(".sidebar-body");
         
         equal( inject.length, 1 );
@@ -224,8 +224,8 @@
             }
         });
         
-        inject = $(".sidebar-inject-"+pos);
-        container = $(".sidebar-container-"+pos);
+        inject = $(".sidebar-inject."+pos);
+        container = $(".sidebar-container."+pos);
         body = $(".sidebar-body");
         
         equal( inject.length, 1 );
