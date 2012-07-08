@@ -11,7 +11,6 @@
     <script type="text/javascript" src="../lib/jquery.js"></script>
     <script type="text/javascript" src="../lib/jquery-ui.js"></script>
     <script type="text/javascript" src="../lib/qunit.js" ></script>
-    
     <script type="text/javascript" src="../src/jquery.sidebar.js"></script>
     <script type="text/javascript" src="jquery.sidebar.js"></script>
     
@@ -33,5 +32,9 @@
             <li><a href="#" >More</a></li>
         </ul>
 </div>
+<script>
+if (location.hash === '#testem')
+    document.write('<script src="/testem.js"></'+'script>')
+</script>
 </body>
 </html>
