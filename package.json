@@ -1,0 +1,37 @@
+{
+  "name": "jquery.sidebar",
+  "title": "jQuery SideBar",
+  "description": "A jQuery plugin that displays sidebar menu.",
+  "version": "1.0.2",
+  "homepage": "https://github.com/sideroad/jquery.sidebar",
+  "author": {
+    "name": "sideroad",
+    "url": "http://sideroad.secret.jp/"
+  },
+  "maintainers": [
+    {
+      "name": "sideroad",
+      "email": "sideroad.jp@gmail.com",
+      "url": "http://sideroad.secret.jp/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sideroad/jquery.sidebar.git"
+  },
+  "bugs": "https://github.com/sideroad/jquery.sidebar/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    },
+    {
+      "type": "GPL",
+      "url": "http://www.opensource.org/licenses/GPL-2.0"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+  },
+  "keywords": [ "sidebar", "menu" ]
+}
