@@ -11,6 +11,9 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
+    testem : {
+        ci : []
+    },
     concat: {
       dist: {
         src: ['<banner:meta.banner>', '<file_strip_banner:src/<%= pkg.name %>.js>'],
@@ -19,7 +22,7 @@ module.exports = function(grunt) {
     },
     min: {
       dist: {
-        src: ['<banner:meta.banner>', '<config:concat.dist.dest>'],
+        src: ['dist/<%= pkg.name %>.js'],
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
@@ -55,6 +58,8 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'qunit concat min');
+  grunt.loadNpmTasks('grunt-testem');
+  grunt.loadNpmTasks('grunt-yui-compressor');
+  grunt.registerTask('default', 'testem concat min');
 
 };

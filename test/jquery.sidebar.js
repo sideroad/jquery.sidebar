@@ -234,7 +234,7 @@
         equal( container.css( pos ), "-50px" );
         
         elem.sidebar("open");
-        
+
     });
 
 })( jQuery );
