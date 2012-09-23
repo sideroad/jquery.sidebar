@@ -12,7 +12,6 @@ module.exports = function(grunt) {
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
     testem : {
-        browsers : [],
         files : [
           'test/jquery.sidebar.html'
         ]
