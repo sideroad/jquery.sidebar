@@ -12,9 +12,11 @@ module.exports = function(grunt) {
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
     testem : {
+      main : {
         files : [
           'test/jquery.sidebar.html'
         ]
+      }
     },
     concat: {
       dist: {
