@@ -1,4 +1,5 @@
 {
+  "browsers": ["PhantomJS"],
   "files": [
     "test/jquery.sidebar.html"
   ]
