@@ -1,5 +1,6 @@
 /*global module:false*/
 module.exports = function(grunt) {
+  "use strict";
 
   // Project configuration.
   grunt.initConfig({
@@ -16,9 +17,7 @@ module.exports = function(grunt) {
         launch_in_ci: [
           'PhantomJS'
         ],
-        files : [
-          'test/jquery.sidebar.html'
-        ],
+        json: 'testem-multi.json',
         tap: 'tests.tap'
       }
     },

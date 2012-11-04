@@ -1,4 +1,4 @@
-/*! jQuery SideBar - v1.0.2 - 2012-10-29
+/*! jQuery SideBar - v1.0.2 - 2012-11-04
 * https://github.com/sideroad/jquery.sidebar
 * Copyright (c) 2012 sideroad; Licensed MIT, GPL */
 

@@ -1,0 +1,1 @@
+{"launch_in_ci":["PhantomJS"],"json":"testem-multi.json","tap":"tests.tap","test_page":"test/jquery.sidebar.html"}
