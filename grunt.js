@@ -30,6 +30,15 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
+    "qunit-cov": {
+      test:{
+        minimum: 0.9,
+        srcDir: 'src',
+        depDirs: ['lib', 'test', 'css'],
+        outDir: 'cov',
+        testFiles: ['test/*.html']
+      }
+    },
     qunit: {
       files: ['test/**/*.html']
     },
@@ -64,6 +73,7 @@ module.exports = function(grunt) {
   // Default task.
   grunt.loadNpmTasks('grunt-testem');
   grunt.loadNpmTasks('grunt-yui-compressor');
+  grunt.loadNpmTasks('grunt-qunit-cov');
   grunt.registerTask('default', 'testem concat min');
 
 };
