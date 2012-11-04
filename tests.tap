@@ -1,0 +1,12 @@
+TAP version 13
+ok 1 - test/jquery.sidebar.html - PhantomJS jquery.sidebar: default/left
+ok 2 - test/jquery.sidebar.html - PhantomJS jquery.sidebar: top
+ok 3 - test/jquery.sidebar.html - PhantomJS jquery.sidebar: right
+ok 4 - test/jquery.sidebar.html - PhantomJS jquery.sidebar: bottom
+ok 5 - test/jquery.sidebar.html - PhantomJS jquery.sidebar: open-event
+ok 6 - test/jquery.sidebar.html - PhantomJS jquery.sidebar: call open/close method manually
+
+1..6
+# tests 6
+# pass 6
+# fail 0
