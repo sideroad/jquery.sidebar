@@ -13,6 +13,9 @@ module.exports = function(grunt) {
     },
     testem : {
       main : {
+        launch_in_ci: [
+          'PhantomJS'
+        ],
         files : [
           'test/jquery.sidebar.html'
         ]
