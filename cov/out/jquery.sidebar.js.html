@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .code {
+            white-space: pre;
+            font-family: courier new;
+            width: 100%;            
+        }
+        
+        .miss {
+            background-color: #FF0000;
+        }
+        
+        .hit {
+            background-color: #94FF7C;
+        }
+        
+        .undef {
+            background-color: #FFFFFF;
+        } 
+
+        .nottested {
+            background-color: #FFFF00;
+        }         
+    </style>
+</head>
+<body>
+
+<div class="code undef">/*!</div>
+<div class="code undef"> * jquery.sidebar v1.0.2</div>
+<div class="code undef"> * http://sideroad.secret.jp/</div>
+<div class="code undef"> *</div>
+<div class="code undef"> * Copyright (c) 2009 sideroad</div>
+<div class="code undef"> *</div>
+<div class="code undef"> * Dual licensed under the MIT or GPL Version 2 licenses.</div>
+<div class="code undef"> * Date: 2009-09-01</div>
+<div class="code undef"> */</div>
+<div class="code hit">(function( $, _window ) {</div>
+<div class="code hit">    $.fn.sidebar = function(options){</div>
+<div class="code undef"></div>
+<div class="code hit">        return this.each(function(){</div>
+<div class="code hit">            var elem = $(this),</div>
+<div class="code undef">                data = elem.data("sidebar")||{},</div>
+<div class="code undef">                margin,</div>
+<div class="code undef">                width,</div>
+<div class="code undef">                height,</div>
+<div class="code undef">                duration = data.duration,</div>
+<div class="code undef">                injectWidth,</div>
+<div class="code undef">                injectHeight,</div>
+<div class="code undef">                injectCss,</div>
+<div class="code undef">                containerCss,</div>
+<div class="code undef">                bodyCss,</div>
+<div class="code undef">                position,</div>
+<div class="code undef">                enter,</div>
+<div class="code undef">                leave,</div>
+<div class="code undef">                opened,</div>
+<div class="code undef">                closed,</div>
+<div class="code undef">                isInnerElement,</div>
+<div class="code undef">                container = $("&lt;div&gt;<div/>"),</div>
+<div class="code undef">                inject = $("&lt;div&gt;<div/>"),</div>
+<div class="code undef">                body = $("&lt;div&gt;<div/>"),</div>
+<div class="code undef">                root,</div>
+<div class="code undef">                parent,</div>
+<div class="code undef">                open = function(){</div>
+<div class="code hit">                    var data = elem.data("sidebar") || {},</div>
+<div class="code undef">                        opened = data.callback.sidebar.open,</div>
+<div class="code undef">                        container = data.container,</div>
+<div class="code undef">                        inject = data.inject,</div>
+<div class="code undef">                        body = data.body;</div>
+<div class="code undef">                    </div>
+<div class="code hit">                    if (data.isEnter || data.isProcessing) {</div>
+<div class="code miss">                        return;</div>
+<div class="code undef">                    }</div>
+<div class="code hit">                    data.isEnter = true;</div>
+<div class="code hit">                    data.isProcessing = true;</div>
+<div class="code hit">                    container.animate(data.animate.container.enter, {</div>
+<div class="code undef">                        duration: duration,</div>
+<div class="code undef">                        complete: function(){</div>
+<div class="code hit">                            inject.fadeOut(duration, function(){</div>
+<div class="code hit">                                body.show("clip", duration,function(){</div>
+<div class="code hit">                                    data.isProcessing = false;</div>
+<div class="code hit">                                    if(opened) {</div>
+<div class="code hit">                                        opened();</div>
+<div class="code undef">                                    }</div>
+<div class="code undef">                                });</div>
+<div class="code undef">                            });</div>
+<div class="code undef">                        }</div>
+<div class="code undef">                    });</div>
+<div class="code undef">                },</div>
+<div class="code undef">                close = function(){</div>
+<div class="code hit">                    var data = elem.data("sidebar") || {},</div>
+<div class="code undef">                        closed = data.callback.sidebar.close,</div>
+<div class="code undef">                        container = data.container,</div>
+<div class="code undef">                        inject = data.inject,</div>
+<div class="code undef">                        body = data.body;</div>
+<div class="code undef">                       </div>
+<div class="code hit">                    if(!data.isEnter || data.isProcessing ) {</div>
+<div class="code miss">                        return;</div>
+<div class="code undef">                    }</div>
+<div class="code hit">                    data.isProcessing = true;</div>
+<div class="code hit">                    container.animate(data.animate.container.leave, {</div>
+<div class="code undef">                        duration: duration,</div>
+<div class="code undef">                        complete: function(){</div>
+<div class="code hit">                            body.hide("clip", duration, function(){</div>
+<div class="code hit">                                inject.fadeIn(duration, function(){</div>
+<div class="code hit">                                    data.isEnter = false;</div>
+<div class="code hit">                                    data.isProcessing = false;</div>
+<div class="code hit">                                    if(closed) {</div>
+<div class="code hit">                                        closed();</div>
+<div class="code undef">                                    }</div>
+<div class="code undef">                                });</div>
+<div class="code undef">                            });</div>
+<div class="code undef">                        }</div>
+<div class="code undef">                    });</div>
+<div class="code undef">                };</div>
+<div class="code undef">            </div>
+<div class="code undef">            </div>
+<div class="code hit">            if(typeof options === "string"){</div>
+<div class="code hit">                switch(options){</div>
+<div class="code undef">                    case "open" :</div>
+<div class="code hit">                        open();</div>
+<div class="code hit">                        break;</div>
+<div class="code undef">                    case "close" : </div>
+<div class="code hit">                        close();</div>
+<div class="code hit">                        break;</div>
+<div class="code undef">                }</div>
+<div class="code hit">                return;</div>
+<div class="code undef">            }</div>
+<div class="code undef">                </div>
+<div class="code undef">            //default setting</div>
+<div class="code hit">            options = $.extend(true, {</div>
+<div class="code undef">                root : $(document.body),</div>
+<div class="code undef">                position : "left",</div>
+<div class="code undef">                callback: {</div>
+<div class="code undef">                    item : {</div>
+<div class="code undef">                        enter : function(){</div>
+<div class="code miss">                            $(this).animate({marginLeft:"5px"},250);</div>
+<div class="code undef">                        },</div>
+<div class="code undef">                        leave : function(){</div>
+<div class="code miss">                            $(this).animate({marginLeft:"0px"},250);</div>
+<div class="code undef">                        }</div>
+<div class="code undef">                    },</div>
+<div class="code undef">                    sidebar : {</div>
+<div class="code undef">                        open : function(){</div>
+<div class="code undef">                            </div>
+<div class="code undef">                        },</div>
+<div class="code undef">                        close : function(){</div>
+<div class="code undef">                            </div>
+<div class="code undef">                        }</div>
+<div class="code undef">                    }</div>
+<div class="code undef">                },</div>
+<div class="code undef">                animate : {</div>
+<div class="code undef">                    container : {</div>
+<div class="code undef">                        enter : {},</div>
+<div class="code undef">                        leave : {}</div>
+<div class="code undef">                    }</div>
+<div class="code undef">                },</div>
+<div class="code undef">                duration : 200,</div>
+<div class="code undef">                open : "mouseenter.sidebar",</div>
+<div class="code undef">                close : "mouseleave.sidebar"</div>
+<div class="code undef">            }, options);</div>
+<div class="code undef">            </div>
+<div class="code hit">            root = options.root;</div>
+<div class="code hit">            isInnerElement = !root.is(document.body);</div>
+<div class="code hit">            parent = ( isInnerElement ) ? root.addClass("sidebar-root") : $(_window);</div>
+<div class="code undef">            </div>
+<div class="code hit">            position = options.position;</div>
+<div class="code hit">            duration = options.duration;</div>
+<div class="code undef">            </div>
+<div class="code hit">            container.attr("id", "jquerySideBar" + new Date().getTime()).addClass("sidebar-container").addClass(position);</div>
+<div class="code hit">            inject.addClass("sidebar-inject").addClass(position);</div>
+<div class="code hit">            body.addClass("sidebar-body");</div>
+<div class="code undef">            </div>
+<div class="code undef">            //append to body</div>
+<div class="code hit">            body.append(this);</div>
+<div class="code hit">            container.append(body);</div>
+<div class="code hit">            container.append(inject);</div>
+<div class="code hit">            root.append(container);</div>
+<div class="code undef">            </div>
+<div class="code hit">            width = container.width();</div>
+<div class="code hit">            height = container.height();</div>
+<div class="code hit">            injectWidth = inject.width();</div>
+<div class="code hit">            injectHeight = inject.height();</div>
+<div class="code undef">            </div>
+<div class="code hit">            containerCss = {</div>
+<div class="code undef">                height: height,</div>
+<div class="code undef">                width: width</div>
+<div class="code undef">            };</div>
+<div class="code hit">            bodyCss = {</div>
+<div class="code undef">                height: height,</div>
+<div class="code undef">                width: width</div>
+<div class="code undef">            };</div>
+<div class="code undef">            </div>
+<div class="code hit">            if(position === "left" || position === "right") {</div>
+<div class="code hit">                margin = width - injectWidth;</div>
+<div class="code hit">                injectCss = {</div>
+<div class="code undef">                    height : height,</div>
+<div class="code undef">                    width : injectWidth</div>
+<div class="code undef">                };</div>
+<div class="code hit">                containerCss.top = options.top || (parent.height()/2) - (height/2) + "px";</div>
+<div class="code undef">                </div>
+<div class="code undef">            } else {</div>
+<div class="code hit">                margin = height - injectHeight;</div>
+<div class="code hit">                injectCss = {</div>
+<div class="code undef">                    height : injectHeight,</div>
+<div class="code undef">                    width : width</div>
+<div class="code undef">                };</div>
+<div class="code hit">                containerCss.left = options.left || (parent.width()/2) - (width/2) + "px";</div>
+<div class="code undef">            }</div>
+<div class="code undef">            </div>
+<div class="code hit">            containerCss[position] = "-" + margin + "px";</div>
+<div class="code hit">            injectCss[position] = margin + "px";</div>
+<div class="code hit">            options.animate.container.enter[position] = 0;</div>
+<div class="code hit">            options.animate.container.leave[position] = "-" + margin;</div>
+<div class="code undef">            </div>
+<div class="code undef">            //container</div>
+<div class="code hit">            container.css(containerCss);</div>
+<div class="code undef">            </div>
+<div class="code undef">            //inject</div>
+<div class="code hit">            inject.css(injectCss);</div>
+<div class="code undef">            </div>
+<div class="code undef">            //body</div>
+<div class="code hit">            body.css(bodyCss).hide();</div>
+<div class="code undef">            </div>
+<div class="code undef">            //menu callback</div>
+<div class="code hit">            $(this).addClass("sidebar-menu").find("li")</div>
+<div class="code undef">                .bind("mouseenter.sidebar",options.callback.item.enter)</div>
+<div class="code undef">                .bind("mouseleave.sidebar",options.callback.item.leave);</div>
+<div class="code undef">            </div>
+<div class="code undef">            //container events</div>
+<div class="code hit">            if(options.open) {</div>
+<div class="code hit">                container.bind(options.open,open);</div>
+<div class="code undef">            }</div>
+<div class="code hit">            if(options.close) {</div>
+<div class="code hit">                container.bind(options.close,close);</div>
+<div class="code undef">            }</div>
+<div class="code undef">            </div>
+<div class="code undef">            //store data</div>
+<div class="code hit">            options.container = container;</div>
+<div class="code hit">            options.inject = inject;</div>
+<div class="code hit">            options.body = body;</div>
+<div class="code hit">            elem.data("sidebar", options);</div>
+<div class="code undef">            </div>
+<div class="code hit">            parent.resize(function(){</div>
+<div class="code miss">                if(position === "left" || position === "right") {</div>
+<div class="code miss">                    container.css({top:($(this).height()/2) - (height/2) + "px"});</div>
+<div class="code undef">                } else {</div>
+<div class="code miss">                    container.css({left:($(this).width()/2) - (width/2) + "px"});</div>
+<div class="code undef">                }</div>
+<div class="code undef">            });</div>
+<div class="code undef">            </div>
+<div class="code undef">        });</div>
+<div class="code undef">    };</div>
+<div class="code undef">}(jQuery, this));</div>
+<div class="code undef"></div>
+
+
+</body>
+</html>

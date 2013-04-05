@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery SideBar Test Suite</title>
+
+
+    <link rel="stylesheet" type="text/css" href="../lib/qunit.css" />
+    <link rel="stylesheet" type="text/css" href="../css/dark-glass/sidebar.css" />
+    
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="../lib/qunit.js" ></script>
+    <script type="text/javascript" src="../src/jquery.sidebar.js"></script>
+    <script type="text/javascript" src="jquery.sidebar.js"></script>
+    
+</head>
+<body>
+
+<h1 id="qunit-header">jQuery SideBar Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture">
+
+        <ul id="sidebar" >
+            <li><a href="#" >jQuery</a></li>
+            <li><a href="#" >Write</a></li>
+            <li><a href="#" >Less</a></li>
+            <li><a href="#" >Do</a></li>
+            <li><a href="#" >More</a></li>
+        </ul>
+</div>
+<script>
+if (location.hash === '#testem')
+    document.write('<script src="/testem.js"></'+'script>')
+</script>
+</body>
+</html>
