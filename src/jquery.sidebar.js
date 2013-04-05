@@ -1,4 +1,4 @@
-/*
+/*!
  * jquery.sidebar v1.0.2
  * http://sideroad.secret.jp/
  *
@@ -9,10 +9,8 @@
  */
 (function( $, _window ) {
     $.fn.sidebar = function(options){
-        
-        
+
         return this.each(function(){
-            
             var elem = $(this),
                 data = elem.data("sidebar")||{},
                 margin,

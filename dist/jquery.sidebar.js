@@ -1,13 +1,16 @@
-/*! jQuery SideBar - v1.0.2 - 2012-11-04
-* https://github.com/sideroad/jquery.sidebar
-* Copyright (c) 2012 sideroad; Licensed MIT, GPL */
-
+/*!
+ * jquery.sidebar v1.0.2
+ * http://sideroad.secret.jp/
+ *
+ * Copyright (c) 2009 sideroad
+ *
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Date: 2009-09-01
+ */
 (function( $, _window ) {
     $.fn.sidebar = function(options){
-        
-        
+
         return this.each(function(){
-            
             var elem = $(this),
                 data = elem.data("sidebar")||{},
                 margin,
