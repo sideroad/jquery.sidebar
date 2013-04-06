@@ -1,7 +1,7 @@
 {
   "name": "jquery.sidebar",
   "version": "0.0.0",
-  "main": "dist/jquery.sidebar.js",
+  "main": "./dist/jquery.sidebar.js",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -10,5 +10,14 @@
     "package.json",
     "*.tap",
     "testem.json"
-  ]
+  ],
+  "dependencies": {
+    "jquery": ">= 1.8",
+    "jquery-ui": ">= 1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sideroad/jquery.sidebar"
+  }
+
 }
