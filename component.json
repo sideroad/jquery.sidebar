@@ -1,0 +1,14 @@
+{
+  "name": "jquery.sidebar",
+  "version": "0.0.0",
+  "main": "dist/jquery.sidebar.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "**/*.html",
+    "package.json",
+    "*.tap",
+    "testem.json"
+  ]
+}
