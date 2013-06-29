@@ -79,6 +79,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-devtools');
   grunt.registerTask('default', ['testem', 'qunit-cov', 'concat', 'min']);
   grunt.registerTask('jenkins', ['testem', 'qunit-cov', 'concat', 'min']);
-  grunt.registerTask('travis', ['testem', 'qunit-cov', 'min']);
+  grunt.registerTask('travis', ['testem', 'concat', 'min']);
 
 };
