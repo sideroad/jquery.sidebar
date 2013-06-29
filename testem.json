@@ -1,1 +1,1 @@
-{"launch_in_ci":["PhantomJS"],"tap":"tests.tap","test_page":"test/jquery.sidebar.html"}
+{"launch_in_ci":["PhantomJS"],"test_page":"test/jquery.sidebar.html"}

@@ -1,6 +1,6 @@
 /*global module:false*/
 module.exports = function(grunt) {
-  "use strict";
+  'use strict';
 
   // Project configuration.
   grunt.initConfig({
@@ -9,13 +9,12 @@ module.exports = function(grunt) {
       options: {
         launch_in_ci: [
           'PhantomJS'
-        ],
-        tap: 'tests.tap'
+        ]
       },
       main: {
         files: {
-          test: [
-            "test/*.html"
+          'tests.tap': [
+            'test/*.html'
           ]
         }
       }
@@ -33,7 +32,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    "qunit-cov": {
+    'qunit-cov': {
       test:{
         minimum: 0.9,
         srcDir: 'src',
