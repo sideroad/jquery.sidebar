@@ -16,7 +16,7 @@
     }
   ],
   "scripts": {
-    "test": "grunt --no-color"
+    "test": "grunt travis --no-color"
   },
   "repository": {
     "type": "git",
