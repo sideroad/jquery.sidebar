@@ -1,4 +1,6 @@
-##Install 
+# jquery.sidebar[![Build Status](https://travis-ci.org/sideroad/jquery.sidebar.png?branch=master)](https://travis-ci.org/sideroad/jquery.sidebar)
+
+##Install
 
 ###Jam
 ```sh
