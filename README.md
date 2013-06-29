@@ -1,7 +1,13 @@
+##Install 
 
-### Install 
+###Jam
 ```sh
 jam install jquery.sidebar
+```
+
+###Bower
+```sh
+bower install jquery.sidebar
 ```
 
 ### Usage
